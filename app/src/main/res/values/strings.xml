@@ -29,4 +29,12 @@
         <item >@drawable/ic_settings_black_18dp</item>
         <item >@drawable/ic_exit_to_app_black_24dp</item>
     </array>
+
+    <!-- Login Page Strings-->
+    <string name="title_activity_login">The Hominator</string>
+    <string name="prompt_email">E-Mail</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login</string>string>
+    <string name="action_forgot">Forgot Password</string>
+    <string name="action_register">Register</string>
 </resources>
