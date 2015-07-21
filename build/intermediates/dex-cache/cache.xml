@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Ali\Documents\android-sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="C:\Users\Ali\Documents\GitHub\Hominator\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-5e1f674fdd83a62025fb04792fa9b51ec522b198.jar" />
+    </item>
+    <item
+        jar="C:\Users\Ali\Documents\GitHub\Hominator\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="C:\Users\Ali\Documents\GitHub\Hominator\app\build\intermediates\pre-dexed\debug\classes-8fd5bcbd8958e708aef5a4681a018cbae4372a28.jar" />
+    </item>
+    <item
+        jar="C:\Users\Ali\Documents\GitHub\Hominator\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="C:\Users\Ali\Documents\GitHub\Hominator\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-f90237b5b6b4f30a59f3d9b281137e25cd55de6b.jar" />
+    </item>
+
+</items>
