@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/nnamdi/AndroidStudioProjects/TheHominator/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-768b4d7e9d25f717992cc0cc984ee0439561048f.jar" />
+    </item>
+    <item
+        jar="/Users/nnamdi/AndroidStudioProjects/TheHominator/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/nnamdi/AndroidStudioProjects/TheHominator/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-3f15b9c498cd79b33d80b05fe0754c7bf591ce6b.jar" />
+    </item>
+    <item
+        jar="/Users/nnamdi/AndroidStudioProjects/TheHominator/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/nnamdi/AndroidStudioProjects/TheHominator/app/build/intermediates/pre-dexed/debug/classes-45bcc7ed7f8e1fa7d317b19c042ce05c74bf70d0.jar" />
+    </item>
+
+</items>
