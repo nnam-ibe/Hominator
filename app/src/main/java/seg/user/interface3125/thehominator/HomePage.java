@@ -1,24 +1,18 @@
 package seg.user.interface3125.thehominator;
 
-import android.app.Activity;
-
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 
 public class HomePage extends Activity
@@ -28,10 +22,14 @@ public class HomePage extends Activity
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
 
+    DBHelper db ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        db = new DBHelper(this);
 
         mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_items_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -50,7 +48,7 @@ public class HomePage extends Activity
 
         mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        setFragment(new Feed_Fragment(),0);
+        setFragment(new Feed_Fragment(), 0);
     }
 
     @Override
