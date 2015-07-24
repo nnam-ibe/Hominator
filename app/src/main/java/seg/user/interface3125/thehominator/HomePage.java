@@ -43,14 +43,14 @@ public class HomePage extends Activity
         drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_drawer, "Home Emergency");
         drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_drawer, "File A Complaint");
         drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_build_black_24dp, "Request A Service");
-        drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_payment_black_18dp, "Pay Bills");
+        drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_payment_black_18dp, "Bills");
         drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_settings_black_18dp, "Settings");
         drawerItem[6] = new ObjectDrawerItem(R.drawable.ic_exit_to_app_black_24dp, "Logout");
         DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, drawerItem);
 
         mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        setFragment(new Feed_Fragment(), 0);
+        setFragment(new Feed_Fragment(), 0, Screen.feed);
     }
 
     @Override
@@ -153,51 +153,69 @@ public class HomePage extends Activity
         switch (position) {
             case 0:
                 fragment = new Feed_Fragment();
+                setFragment(fragment, position, Screen.feed);
+                mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 1:
                 fragment = new Emergency_Fragment();
+                setFragment(fragment, position, Screen.emergency);
+                mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 2:
                 fragment = new Complaint_Fragment();
+                setFragment(fragment, position, Screen.complaint);
+                mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 3:
                 fragment = new Service_Fragment();
+                setFragment(fragment, position, Screen.service);
+                mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 4:
                 fragment = new Bills_Fragment();
+                setFragment(fragment, position, Screen.bills);
+                mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 5:
                 fragment = new Settings_Fragment();
+                setFragment(fragment, position, Screen.settings);
+                mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 6:
                 fragment = new Logout_Fragment();
+                setFragment(fragment, position, Screen.logout);
+                mDrawerLayout.closeDrawer(mDrawerList);
                 break;
-        }
-//        Bundle args = new Bundle();
-//        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-//        fragment.setArguments(args);
-
-        // Insert the fragment by replacing any existing fragment
-        if (fragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .commit();
-
-            // Highlight the selected item, update the title, and close the drawer
-            mDrawerList.setItemChecked(position, true);
-            setTitle(mNavigationDrawerItemTitles[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
         }
     }
 
-    public void setFragment(Fragment fragment, int position) {
+    public void setFragment(Fragment fragment, int position, Screen screen) {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)
+                .addToBackStack(screen.toString())
                 .commit();
         mDrawerList.setItemChecked(position, true);
         setTitle(mNavigationDrawerItemTitles[position]);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() <= 1) {
+            this.finish();
+        } else {
+            try {
+                getFragmentManager().popBackStack();
+                FragmentManager fm = getFragmentManager();
+                int entry =  fm.getBackStackEntryCount();
+                String tag = fm.getBackStackEntryAt(entry-2).getName();
+                Screen screen = Screen.enumValue(tag);
+                mDrawerList.setItemChecked(screen.getPosition(), true);
+                setTitle(mNavigationDrawerItemTitles[screen.getPosition()]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                this.finish();
+            }
+        }
     }
 
     public void repairScreen(View view){
@@ -210,9 +228,44 @@ public class HomePage extends Activity
         startActivity(intent);
     }
 
+    public void contact(View view) {
+//        Intent intent = new
+    }
+
     public void submitR(View view) {
         Toast.makeText(getApplicationContext(), "Your request has been submitted",
                 Toast.LENGTH_LONG).show();
     }
 
+    public enum Screen{
+        feed(0), emergency(1), complaint(2), service(3), bills(4), settings(5), logout(6);
+
+        private int position;
+
+        Screen(int position) {
+            this.position=position;
+        }
+
+        private int getPosition(){return position;}
+
+        public static Screen enumValue(String value){
+            switch (value) {
+                case "feed":
+                    return Screen.feed;
+                case "emergency":
+                    return Screen.emergency;
+                case "complaint":
+                    return Screen.complaint;
+                case "service":
+                    return Screen.service;
+                case "bills":
+                    return Screen.bills;
+                case "settings":
+                    return Screen.settings;
+                case "logout":
+                    return Screen.logout;
+            }
+            return Screen.feed;
+        }
+    }
 }
