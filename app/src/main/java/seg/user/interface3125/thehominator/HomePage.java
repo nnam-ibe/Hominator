@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -19,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class HomePage extends Activity
@@ -198,6 +200,21 @@ public class HomePage extends Activity
                 .commit();
         mDrawerList.setItemChecked(position, true);
         setTitle(mNavigationDrawerItemTitles[position]);
+    }
+
+    public void repairScreen(View view){
+        Intent intent = new Intent(this, repair_request.class);
+        startActivity(intent);
+    }
+
+    public void partyScreen(View view) {
+        Intent intent = new Intent(this, Party_Room.class);
+        startActivity(intent);
+    }
+
+    public void submitR(View view) {
+        Toast.makeText(getApplicationContext(), "Your request has been submitted",
+                Toast.LENGTH_LONG).show();
     }
 
 }

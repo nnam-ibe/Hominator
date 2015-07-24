@@ -36,6 +36,15 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".repair_request"
+            android:label="@string/title_activity_repair_request" >
+        </activity>
+        <activity
+            android:name=".Party_Room"
+            android:label="@string/title_activity_party__room" >
+        </activity>
     </application>
 
 </manifest>
