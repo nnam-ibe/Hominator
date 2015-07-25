@@ -24,6 +24,15 @@ import java.util.Enumeration;
 
 public class repair_request extends Activity {
 
+    private LinearLayout fixed2;
+    private LinearLayout fixed1;
+    private CheckBox c1;
+    private CheckBox c2;
+    private CheckBox c3;
+    private EditText et1;
+    private EditText et2;
+
+    private boolean isTwo = true;
     private enum Item {
         none, plumbing, electrical, other;
     }
@@ -34,6 +43,13 @@ public class repair_request extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repair_request);
         addListenerOnSpinnerItemSelection();
+        fixed1 = (LinearLayout) findViewById(R.id.fixed1);
+        fixed2 = (LinearLayout) findViewById(R.id.fixed2);
+        c1 = (CheckBox) findViewById(R.id.cB1);
+        c2 = (CheckBox) findViewById(R.id.cB2);
+        c3 = (CheckBox)findViewById(R.id.cB3);
+        et1 = (EditText)findViewById(R.id.repair_editText);
+        et2 = (EditText) findViewById(R.id.repair_editText1);
     }
 
     @Override
@@ -63,15 +79,49 @@ public class repair_request extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void clearView() {
-        LinearLayout fixed1 = (LinearLayout)findViewById(R.id.fixed1);
-        fixed1.removeAllViews();
-
-        LinearLayout fixed2 = (LinearLayout)findViewById(R.id.fixed1);
-        fixed2.removeAllViews();
+    public void submitR(View view) {
+        if ( validate() ) {
+            toast("Your request has been submitted");
+            finish();
+        }
     }
 
+    private boolean validate() {
+        if ( (fixed1.getVisibility() == View.INVISIBLE) && (fixed2.getVisibility() == View.INVISIBLE)  ) {
+            toast("Select an option.");
+            return false;
+        }
+        if ( fixed1.getVisibility() == View.VISIBLE ) {
+            return validateFixed1();
+        } else if ( fixed2.getVisibility() == View.VISIBLE ) {
+            return validateFixed2();
+        }
+        return false;
+    }
 
+    private boolean validateFixed1() {
+        if ( !c1.isChecked() && !c2.isChecked() && !c3.isChecked() ) {
+            toast("You must check at least one box.");
+            return false;
+        }
+        if ( et1.getText().length() <= 0 ) {
+            toast("Please fill in the field");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateFixed2() {
+        if ( et2.getText().length() <= 0 ) {
+            toast("Please fill in the field");
+            return false;
+        }
+        return true;
+    }
+
+    private void toast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
 
     private class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
 
@@ -143,7 +193,6 @@ public class repair_request extends Activity {
 
             LinearLayout fixed2 = (LinearLayout) findViewById(R.id.fixed2);
             fixed2.setVisibility(View.VISIBLE);
-
         }
 
     }

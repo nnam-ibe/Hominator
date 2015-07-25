@@ -233,9 +233,9 @@ public class HomePage extends Activity
         startActivity(intent);
     }
 
-    public void submitR(View view) {
-        Toast.makeText(getApplicationContext(), "Your request has been submitted",
-                Toast.LENGTH_LONG).show();
+    public void parking(View view) {
+        Intent intent = new Intent(this, Parking.class);
+        startActivity(intent);
     }
 
     public enum Screen{
