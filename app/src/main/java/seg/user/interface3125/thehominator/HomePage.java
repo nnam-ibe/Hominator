@@ -229,7 +229,8 @@ public class HomePage extends Activity
     }
 
     public void contact(View view) {
-//        Intent intent = new
+        Intent intent = new Intent(this, ContactUs.class);
+        startActivity(intent);
     }
 
     public void submitR(View view) {
