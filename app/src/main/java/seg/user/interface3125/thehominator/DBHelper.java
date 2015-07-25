@@ -41,6 +41,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE4_CHEAD = "compHeading";
     public static final String TABLE4_CDESC = "compDesc";
 
+    public static final String TABLE_PARTY_ROOM = "party";
+    public static final String PARTY_DATE = "date";
+    public static final String PARTY_START_TIME = "startTime";
+    public static final String PARTY_END_TIME = "endTime";
+
     // DB Create tables
     private static final String TABLE1_CREATE = "create table "
             + TABLE1 + "(" + TABLE1_UID
@@ -64,6 +69,11 @@ public class DBHelper extends SQLiteOpenHelper {
             + " integer not null," +  TABLE4_CHEAD + " text not null, " + TABLE4_CDESC + " text not null, " +  "FOREIGN KEY (" + TABLE4_UID + ") REFERENCES " + TABLE1 + "(" + TABLE1_UID + "), "
             +  "FOREIGN KEY (" + TABLE4_LID + ") REFERENCES " + TABLE2 + "(" + TABLE2_LID + ") );";
 
+    private static final String TABLE_PARTY_ROOM_CREATE = "create table "
+            + TABLE_PARTY_ROOM + "(" + PARTY_DATE
+            + " date primary key, " + PARTY_START_TIME + " time primary key, "
+            + PARTY_END_TIME + " time not null);";
+
     public DBHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         SQLiteDatabase db = this.getWritableDatabase();
@@ -76,6 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(TABLE2_CREATE);
         sqLiteDatabase.execSQL(TABLE3_CREATE);
         sqLiteDatabase.execSQL(TABLE4_CREATE);
+        sqLiteDatabase.execSQL(TABLE_PARTY_ROOM_CREATE);
     }
 
     @Override
@@ -88,6 +99,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE2);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE3);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE4);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_PARTY_ROOM);
         onCreate(sqLiteDatabase);
     }
 }

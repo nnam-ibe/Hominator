@@ -1,13 +1,11 @@
 package seg.user.interface3125.thehominator;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -52,28 +50,32 @@ public class Parking extends Activity {
 
     public void parkingOnClick(View view) {
        if (validate()) {
-           Toast.makeText(this, "Your request has been submitted, you'll receive an email shortly.", Toast.LENGTH_LONG).show();
+           toast("Your request has been submitted, you'll receive an email shortly.");
            finish();
        }
     }
 
     private boolean validate() {
         if ( vMaked.getText().length() <= 0 ) {
-            Toast.makeText(this, "Please fill out your vehicle make.", Toast.LENGTH_LONG).show();
+            toast("Please fill out your vehicle make.");
             return false;
         } else if ( vModeled.getText().length() <= 0 ) {
-            Toast.makeText(this, "Please fill out your vehicle model number.", Toast.LENGTH_LONG).show();
+            toast("Please fill out your vehicle model number.");
             return false;
         } else if ( vPlated.getText().length() <=1  ) {
-            Toast.makeText(this, "Please fill out your vehicle plate number.", Toast.LENGTH_LONG).show();
+            toast("Please fill out your vehicle plate number.");
             return false;
         } else if ( vColor.getText().length() <= 0 ) {
-            Toast.makeText(this, "Please fill out your vehicle color.", Toast.LENGTH_LONG).show();
+            toast("Please fill out your vehicle color.");
             return false;
         } else if ( vColor.getText().toString().contains(" ") ) {
-            Toast.makeText(this, "Please enter a valid color.", Toast.LENGTH_LONG).show();
+            toast("Please enter a valid color.");
             return false;
         }
         return true;
+    }
+
+    private void toast(String toast) {
+        Toast.makeText(this, toast, Toast.LENGTH_LONG).show();
     }
 }
