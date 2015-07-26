@@ -24,6 +24,8 @@ public class HomePage extends Activity
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
 
+    private ActionBar.Tab hFeed, hEvent;
+
     DBHelper db ;
 
     @Override

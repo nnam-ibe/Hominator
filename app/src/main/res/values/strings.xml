@@ -70,4 +70,28 @@
     <string name="title_activity_party__room">Party_Room</string>
     <string name="title_activity_contact_us">ContactUs</string>
     <string name="title_activity_parking">Parking</string>
+
+
+    <string name="feed_pool_title">Swimming pool now open!!</string>
+    <string name="feed_pool_desc">The swimming pool is now open to community residents.</string>
+
+    <string name="feed_bbq_title">Community BBQ</string>
+    <string name="feed_bbq_desc">The community would be showing its appreciation by hosting a bbq, on Thursday, August 15th.</string>
+
+    <string name="feed_water_title">Water shut down</string>
+    <string name="feed_water_desc">The community water will be shut off between the hours 2PM and 5PM, on Monday, July 27th.</string>
+    
+    <string name="feed_fire_title">Fire drill</string>
+    <string name="feed_fire_desc">There would be a fire drill, between the hours of 10AM and 12PM, on Tuesday, July 28th.</string>
+
+    <string name="feed_canada_title">Canada day celebration</string>
+    <string name="feed_canada_desc">Come celebrating canada day with us at the community park, from 4PM to 10PM, on Wednesday, July 1st.</string>
+
+    <string name="feed_garage_title">Garage construction</string>
+    <string name="feed_garage_desc">The planned garage expansion will begin Monday, August 2nd. Vehicles parked in section C would need to be moved to thier new sections before then.</string>
+
+    <string name="feed_bike_title">Bike room construction</string>
+    <string name="feed_bike_desc">The new bike room construction has been completed, registration for bike spots are now open to residents.</string>
+
+
 </resources>
