@@ -2,7 +2,6 @@ package seg.user.interface3125.thehominator;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,8 +17,6 @@ import java.util.List;
 public class Feed_Fragment extends Fragment {
     private RecyclerView mRecyclerView;
     private FeedAdapter fAdapter;
-//    private RecyclerView.Adapter mAdapter;
-//    private RecyclerView.LayoutManager mLayoutManager;
     public Feed_Fragment() {
     }
 
@@ -28,8 +25,6 @@ public class Feed_Fragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_feed, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feed_recycler_view);
 
-        // use a linear layout manager
-//        mLayoutManager = new LinearLayoutManager(getActivity());
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(llm);

@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 public class HomePage extends Activity
@@ -23,8 +22,6 @@ public class HomePage extends Activity
     private String[] mNavigationDrawerItemTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
-
-    private ActionBar.Tab hFeed, hEvent;
 
     DBHelper db ;
 
