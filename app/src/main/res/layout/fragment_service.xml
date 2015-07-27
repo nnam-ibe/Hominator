@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         card_view:cardPreventCornerOverlap="false"
         card_view:cardUseCompatPadding="true"
+        card_view:cardBackgroundColor="@color/colorCards"
         android:id="@+id/service_repair"
         android:onClick="repairScreen">
 
@@ -54,6 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        card_view:cardBackgroundColor="@color/colorCards"
         card_view:cardPreventCornerOverlap="false"
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="4dp"
@@ -98,6 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        card_view:cardBackgroundColor="@color/colorCards"
         card_view:cardPreventCornerOverlap="false"
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="4dp"
@@ -141,6 +144,7 @@
         android:id="@+id/service_call"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        card_view:cardBackgroundColor="@color/colorCards"
         android:padding="10dp"
         card_view:cardCornerRadius="4dp"
         android:onClick="contact">

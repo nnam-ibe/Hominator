@@ -30,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="20dp"
+        card_view:cardBackgroundColor="@color/colorCards"
         android:layout_below="@+id/complaintSpinner"
         card_view:cardPreventCornerOverlap="false"
         card_view:cardUseCompatPadding="true"
