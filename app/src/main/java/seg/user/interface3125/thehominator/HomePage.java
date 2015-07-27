@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class HomePage extends Activity
@@ -237,6 +239,21 @@ public class HomePage extends Activity
         startActivity(intent);
     }
 
+    public void emergencySubmit(View view) {
+        EditText subject = (EditText) findViewById(R.id.emer_subjectTextView);
+        EditText desc = (EditText) findViewById(R.id.emer_descTextView);
+
+        if( subject.getText().toString().isEmpty() ) {
+            toast("Please fill in a subject");
+            return;
+        } else if (desc.getText().toString().isEmpty() ) {
+            toast("Please fill in a description");
+            return;
+        }
+        toast("Your emergency has been submitted. We'll send someone to you right away.");
+        getFragmentManager().popBackStack();
+    }
+
     public enum Screen{
         feed(0), emergency(1), complaint(2), service(3), bills(4), settings(5), logout(6);
 
@@ -267,5 +284,9 @@ public class HomePage extends Activity
             }
             return Screen.feed;
         }
+    }
+
+    private void toast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 }

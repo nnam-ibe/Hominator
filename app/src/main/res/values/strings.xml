@@ -92,6 +92,9 @@
 
     <string name="feed_bike_title">Bike room construction</string>
     <string name="feed_bike_desc">The new bike room construction has been completed, registration for bike spots are now open to residents.</string>
+    <string name="emergency_subject">Emergency subject</string>
+    <string name="emergency_description">Emergency description</string>
+    <string name="emergency_submit">Submit</string>
 
 
 </resources>
