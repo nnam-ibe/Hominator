@@ -1,0 +1,138 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="seg.user.interface3125.thehominator.Parking">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardPreventCornerOverlap="false"
+        card_view:cardUseCompatPadding="true"
+        android:id="@+id/cardView"
+        >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/vehicleInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:text="Vehicle Information"
+            android:textColor="#000000"
+            android:textSize="25sp" />
+        <View
+            android:id="@+id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="2dip"
+            android:layout_below="@+id/vehicleInfo"
+            android:layout_marginTop="7dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/vMake"
+            android:paddingTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line"
+            android:text="Vehicle make:"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/vMaked"
+            android:paddingTop="10dp"
+            android:maxLength="13"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/vMake"
+            android:layout_below="@+id/line"/>
+
+        <TextView
+            android:id="@+id/vModel"
+            android:paddingTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vMake"
+            android:text="Vehicle model:"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/vModeled"
+            android:paddingTop="10dp"
+            android:maxLength="13"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/vModel"
+            android:layout_below="@+id/vMaked"/>
+
+
+        <TextView
+            android:id="@+id/vPlate"
+            android:paddingTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vModel"
+            android:text="License Plate:"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/vPlated"
+            android:paddingTop="10dp"
+            android:maxLength="8"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/vPlate"
+            android:layout_below="@+id/vModeled"/>
+
+        <TextView
+            android:id="@+id/vColor"
+            android:paddingTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vPlate"
+            android:text="Vehicle Color:"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/vColored"
+            android:paddingTop="10dp"
+            android:maxLength="13"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/vColor"
+            android:layout_below="@+id/vPlated"/>
+
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingTop="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/cardView"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Request"
+            android:onClick="parkingOnClick" />
+    </LinearLayout>
+</RelativeLayout>

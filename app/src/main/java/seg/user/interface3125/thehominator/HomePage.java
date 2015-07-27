@@ -2,8 +2,11 @@ package seg.user.interface3125.thehominator;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -12,7 +15,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class HomePage extends Activity
@@ -21,6 +36,19 @@ public class HomePage extends Activity
     private String[] mNavigationDrawerItemTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+
+    RelativeLayout noiseComplaintView;
+
+    private TextView date;
+    private TextView time;
+
+    private SimpleDateFormat dateFormatter;
+    private Calendar calValidator;
+    private Calendar dateCal;
+    private Calendar timeCal;
+
+    private DatePickerDialog datePickerDialog;
+    private TimePickerDialog timePickerDialog;
 
     DBHelper db ;
 
@@ -41,14 +69,14 @@ public class HomePage extends Activity
         drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_drawer, "Home Emergency");
         drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_drawer, "File A Complaint");
         drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_build_black_24dp, "Request A Service");
-        drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_payment_black_18dp, "Pay Bills");
+        drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_payment_black_18dp, "Bills");
         drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_settings_black_18dp, "Settings");
         drawerItem[6] = new ObjectDrawerItem(R.drawable.ic_exit_to_app_black_24dp, "Logout");
         DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, drawerItem);
 
         mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        setFragment(new Feed_Fragment(), 0);
+        setFragment(new Feed_Fragment(), 0, Screen.feed);
     }
 
     @Override
@@ -155,56 +183,231 @@ public class HomePage extends Activity
         }
     }
 
-    private void selectItem(int position) {
-        Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = new Feed_Fragment();
-                break;
-            case 1:
-                fragment = new Emergency_Fragment();
-                break;
-            case 2:
-                fragment = new Complaint_Fragment();
-                break;
-            case 3:
-                fragment = new Service_Fragment();
-                break;
-            case 4:
-                fragment = new Bills_Fragment();
-                break;
-            case 5:
-                fragment = new Settings_Fragment();
-                break;
-            case 6:
-                fragment = new Logout_Fragment();
-                break;
-        }
-//        Bundle args = new Bundle();
-//        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-//        fragment.setArguments(args);
-
-        // Insert the fragment by replacing any existing fragment
-        if (fragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .commit();
-
-            // Highlight the selected item, update the title, and close the drawer
-            mDrawerList.setItemChecked(position, true);
-            setTitle(mNavigationDrawerItemTitles[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
-        }
-    }
-
-    public void setFragment(Fragment fragment, int position) {
+    public void setFragment(Fragment fragment, int position, Screen screen) {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)
+                .addToBackStack(screen.toString())
                 .commit();
         mDrawerList.setItemChecked(position, true);
         setTitle(mNavigationDrawerItemTitles[position]);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() <= 1) {
+            this.finish();
+        } else {
+            try {
+                getFragmentManager().popBackStack();
+                FragmentManager fm = getFragmentManager();
+                int entry =  fm.getBackStackEntryCount();
+                String tag = fm.getBackStackEntryAt(entry-2).getName();
+                Screen screen = Screen.enumValue(tag);
+                mDrawerList.setItemChecked(screen.getPosition(), true);
+                setTitle(mNavigationDrawerItemTitles[screen.getPosition()]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                this.finish();
+            }
+        }
+    }
+
+    public void repairScreen(View view){
+        Intent intent = new Intent(this, repair_request.class);
+        startActivity(intent);
+    }
+
+    public void partyScreen(View view) {
+        Intent intent = new Intent(this, Party_Room.class);
+        startActivity(intent);
+    }
+
+    public void contact(View view) {
+        Intent intent = new Intent(this, ContactUs.class);
+        startActivity(intent);
+    }
+
+    public void parking(View view) {
+        Intent intent = new Intent(this, Parking.class);
+        startActivity(intent);
+    }
+
+    public void emergencySubmit(View view) {
+        EditText subject = (EditText) findViewById(R.id.emer_subjectTextView);
+        EditText desc = (EditText) findViewById(R.id.emer_descTextView);
+
+        if( subject.getText().toString().isEmpty() ) {
+            toast("Please fill in a subject");
+            return;
+        } else if (desc.getText().toString().isEmpty() ) {
+            toast("Please fill in a description");
+            return;
+        }
+        toast("Your emergency has been submitted. We'll send someone to you right away.");
+        onBackPressed();
+    }
+
+    public enum Screen{
+        feed(0), emergency(1), complaint(2), service(3), bills(4), settings(5), logout(6);
+
+        private int position;
+
+        Screen(int position) {
+            this.position=position;
+        }
+
+        private int getPosition(){return position;}
+
+        public static Screen enumValue(String value){
+            switch (value) {
+                case "feed":
+                    return Screen.feed;
+                case "emergency":
+                    return Screen.emergency;
+                case "complaint":
+                    return Screen.complaint;
+                case "service":
+                    return Screen.service;
+                case "bills":
+                    return Screen.bills;
+                case "settings":
+                    return Screen.settings;
+                case "logout":
+                    return Screen.logout;
+            }
+            return Screen.feed;
+        }
+    }
+
+    private enum Item{
+        none, noise, loitering, property, other;
+    }
+
+    private void toast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
+    private void selectItem(int position) {
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new Feed_Fragment();
+                setFragment(fragment, position, Screen.feed);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 1:
+                fragment = new Emergency_Fragment();
+                setFragment(fragment, position, Screen.emergency);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 2:
+                fragment = new Complaint_Fragment();
+                setFragment(fragment, position, Screen.complaint);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 3:
+                fragment = new Service_Fragment();
+                setFragment(fragment, position, Screen.service);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 4:
+                fragment = new Bills_Fragment();
+                setFragment(fragment, position, Screen.bills);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 5:
+                fragment = new Settings_Fragment();
+                setFragment(fragment, position, Screen.settings);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 6:
+                fragment = new Logout_Fragment();
+                setFragment(fragment, position, Screen.logout);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+        }
+    }
+
+    public void complaintOnClick(View view ) {
+        if( optionIsValid() && dateIsValid() &&  editTextValid()  ) {
+            toast("Your complaint has been submitted, you'll receive an email shortly.");
+            onBackPressed();
+        }
+    }
+
+    private boolean dateIsValid() {
+        calValidator = Calendar.getInstance();
+        if (dateCal.after(calValidator) ) {
+            toast("Please choose a valid date.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean editTextValid() {
+        EditText editText = (EditText) findViewById(R.id.comp_editText);
+        if ( editText.getText().toString().isEmpty() ) {
+            toast("Please enter description.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean optionIsValid() {
+        Spinner sp = (Spinner) findViewById(R.id.complaintSpinner);
+        if ( sp.getSelectedItemPosition() == 0 ) {
+            toast("Please select a complaint type");
+            return false;
+        }
+        return true;
+    }
+
+    private void setDateAndTime(){
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePickerDialog.show();
+            }
+        });
+
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timePickerDialog.show();
+            }
+        });
+
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                dateCal.set(year, monthOfYear, dayOfMonth);
+                date.setText(dateFormatter.format(dateCal.getTime()));
+            }
+        }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH) );
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis() + 1000);
+
+        timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                timeCal.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                timeCal.set(Calendar.MINUTE, minute);
+                time.setText(dateFormatter.getTimeInstance().format(timeCal.getTime()));
+            }
+        }, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), false);
+    }
+
+    public void setUpCompliant(View rootView){
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.CANADA);
+        calValidator = Calendar.getInstance();
+        dateCal=Calendar.getInstance();
+        timeCal=Calendar.getInstance();
+
+        date = (TextView) rootView.findViewById(R.id.complaint_date_set);
+        date.setText(dateFormatter.getDateInstance().format(new Date()));
+
+        time= (TextView) rootView.findViewById(R.id.complaint_time_set);
+        time.setText(dateFormatter.getTimeInstance().format(new Date()));
+
+        setDateAndTime();
+    }
 }

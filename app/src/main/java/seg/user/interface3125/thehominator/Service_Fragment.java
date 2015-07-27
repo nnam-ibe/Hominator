@@ -1,6 +1,7 @@
 package seg.user.interface3125.thehominator;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,4 +19,5 @@ public class Service_Fragment extends Fragment {
 
         return rootView;
     }
+
 }

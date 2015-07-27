@@ -14,7 +14,7 @@
         <item >Home Emergency</item>
         <item >File A Complaint</item>
         <item >Request A Service</item>
-        <item >Pay Bills</item>
+        <item >Bills</item>
         <item >Settings</item>
         <item >Logout</item>
     </string-array>
@@ -40,4 +40,80 @@
     </array>
 
     <!-- Login Page Strings-->
+
+    <!--<string name="title_activity_login">The Hominator</string>-->
+    <string name="prompt_email">E-Mail</string>
+    <string name="prompt_password">Password</string>
+    <!--<string name="action_sign_in">Login</string>string>-->
+    <string name="action_forgot">Forgot Password</string>
+    <string name="action_register">Register</string>
+
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <!--<string name="prompt_email">Email</string>-->
+    <!--<string name="prompt_password">Password (optional)</string>-->
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="plus_sign_out">Switch Google+ account</string>
+    <string name="plus_disconnect">Disconnect from Google+</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="fragment_service_repair">Repair Request</string>
+    <string name="title_activity_repair_request">Request A Service</string>
+
+    <string name="repair_main_text">What would you like to have fixed?</string>
+
+    <!--Repair Request Options-->
+    <string name="repair_prompt">Select an option</string>
+    <string-array name="repair_array">
+        <item>-- Select an option --</item>
+        <item>Plumbing issue</item>
+        <item>Electrical issue</item>
+        <item>Other</item>
+    </string-array>
+    <string name="title_activity_fragment_repair_request">fragment_repair_request</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="repair_submit_request">Submit Request</string>
+    <string name="title_activity_party__room">Request Party Room</string>
+    <string name="title_activity_contact_us">Contact Us</string>
+    <string name="title_activity_parking">Request Parking</string>
+
+
+    <string name="feed_pool_title">Swimming pool now open!!</string>
+    <string name="feed_pool_desc">The swimming pool is now open to community residents.</string>
+
+    <string name="feed_bbq_title">Community BBQ</string>
+    <string name="feed_bbq_desc">The community would be showing its appreciation by hosting a bbq, on Thursday, August 15th.</string>
+
+    <string name="feed_water_title">Water shut down</string>
+    <string name="feed_water_desc">The community water will be shut off between the hours 2PM and 5PM, on Monday, July 27th.</string>
+    
+    <string name="feed_fire_title">Fire drill</string>
+    <string name="feed_fire_desc">There would be a fire drill, between the hours of 10AM and 12PM, on Tuesday, July 28th.</string>
+
+    <string name="feed_canada_title">Canada day celebration</string>
+    <string name="feed_canada_desc">Come celebrating canada day with us at the community park, from 4PM to 10PM, on Wednesday, July 1st.</string>
+
+    <string name="feed_garage_title">Garage construction</string>
+    <string name="feed_garage_desc">The planned garage expansion will begin Monday, August 2nd. Vehicles parked in section C would need to be moved to thier new sections before then.</string>
+
+    <string name="feed_bike_title">Bike room construction</string>
+    <string name="feed_bike_desc">The new bike room construction has been completed, registration for bike spots are now open to residents.</string>
+    <string name="emergency_subject">Emergency subject</string>
+    <string name="emergency_description">Emergency description</string>
+    <string name="emergency_submit">Submit</string>
+
+    <string name="complaint_nature">Nature of Complaint?</string>
+    <string name="complaint_prompt">Select an option</string>
+    <string name="title_complaint_activity">File a Complaint</string>
+    <string-array name="complaint_array">
+        <item>-- Select an option --</item>
+        <item>Noise Complaint</item>
+        <item>Loitering</item>
+        <item>Property Standards</item>
+        <item>Other</item>
+    </string-array>
 </resources>
