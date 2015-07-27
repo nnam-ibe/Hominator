@@ -16,7 +16,7 @@ import android.widget.ListView;
 
 
 public class HomePage extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, View.OnClickListener {
 
     private String[] mNavigationDrawerItemTitles;
     private DrawerLayout mDrawerLayout;
@@ -97,6 +97,15 @@ public class HomePage extends Activity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+       /* switch ((view.getId())){
+            case R.id.loginButton:
+                startActivity(new Intent(this, LoginActivity.class));
+                break;*/
+       // }
     }
 
     /**

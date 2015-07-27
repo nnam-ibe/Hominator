@@ -19,6 +19,15 @@
         <item >Logout</item>
     </string-array>
 
+    <string-array name="communityArray">
+        <item>Bayshore</item>
+        <item>Barrhaven</item>
+        <item>Sandy Hill</item>
+        <item>Downtown</item>
+        <item>Orleans</item>
+        <item>Kanata</item>
+    </string-array>
+
     <!-- Nav Drawer List Item Icons -->
     <array name="nav_drawer_icons">
         <item >@drawable/ic_home_black_24dp</item>
@@ -31,10 +40,4 @@
     </array>
 
     <!-- Login Page Strings-->
-    <string name="title_activity_login">The Hominator</string>
-    <string name="prompt_email">E-Mail</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Login</string>string>
-    <string name="action_forgot">Forgot Password</string>
-    <string name="action_register">Register</string>
 </resources>

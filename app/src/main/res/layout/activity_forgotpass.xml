@@ -1,0 +1,40 @@
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:layout_marginTop="16dp"
+
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout android:id="@+id/login_form" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical">
+
+
+            <TextView android:id="@+id/formInfo5" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="Please enter your email below to reset your password"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="120dp"
+                />
+
+            <EditText android:id="@+id/fpEmail" android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" android:maxLines="1"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
+                android:singleLine="true" />
+
+            <Button android:id="@+id/bResetPass" style="?android:textAppearanceSmall"
+                android:layout_width="match_parent" android:layout_height="67dp"
+                android:layout_marginTop="30dp"
+                android:text="Reset password"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

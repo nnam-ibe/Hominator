@@ -1,0 +1,127 @@
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:layout_marginTop="16dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout android:id="@+id/login_form" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical"
+        >
+        <TextView android:id="@+id/errorMsgusername" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Please complete the following form."
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            />
+        <TextView android:id="@+id/errorMsgfirstName" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="All fields are required."
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:gravity="center"
+            />
+
+        <TextView android:id="@+id/errorMsglastName" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="First Name"
+            android:maxLines="1"
+            android:layout_marginTop="15dp"
+            android:visibility="gone"
+            android:singleLine="true" />
+
+        <TextView android:id="@+id/errorMsgemail" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="First Name"
+            android:maxLines="1"
+            android:visibility="gone"
+            android:textSize = "5pt"
+            android:layout_marginTop="15dp"
+            android:singleLine="true" />
+
+        <TextView android:id="@+id/formInfo1" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Please complete the following form."
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            />
+        <TextView android:id="@+id/formInfo2" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="All fields are required."
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:gravity="center"
+            />
+
+        <TextView android:id="@+id/firstname" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="First Name"
+            android:maxLines="1"
+            android:layout_marginTop="15dp"
+            android:singleLine="true" />
+
+        <EditText android:id="@+id/efirstname" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" android:maxLines="1"
+            android:layout_marginBottom="10dp"
+            android:singleLine="true" />
+
+        <TextView android:id="@+id/lastname" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Last Name"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <EditText android:id="@+id/elastname" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="10dp"
+            android:maxLines="1" android:singleLine="true" />
+
+
+        <TextView android:id="@+id/email" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Email"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <EditText android:id="@+id/eemail" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="10dp"
+            android:maxLines="1" android:singleLine="true" />
+
+        <TextView android:id="@+id/username" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Username"
+            android:maxLines="1"
+            android:layout_marginBottom="5dp"
+            android:singleLine="true" />
+
+        <EditText android:id="@+id/eusername" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textNoSuggestions" android:maxLines="1"
+            android:layout_marginBottom="10dp"
+            android:singleLine="true" />
+
+        <TextView android:id="@+id/password" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Password"
+            android:maxLines="1"
+            android:layout_marginBottom="5dp"
+            android:singleLine="true" />
+
+        <EditText android:id="@+id/epassword" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+        android:inputType="textPassword"
+        android:maxLines="1" android:singleLine="true" />
+
+        <Button android:id="@+id/bRegisNext" style="?android:textAppearanceSmall"
+            android:layout_width="match_parent" android:layout_height="67dp"
+            android:layout_marginTop="-5dp"
+            android:text="Next"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>

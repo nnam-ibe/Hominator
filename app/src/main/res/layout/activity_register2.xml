@@ -1,0 +1,71 @@
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:layout_marginTop="16dp"
+
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+        <LinearLayout android:id="@+id/login_form" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical">
+
+
+            <TextView android:id="@+id/formInfo1" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="Please complete the following form."
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                />
+            <TextView android:id="@+id/formInfo2" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="All fields are required."
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+            <TextView android:id="@+id/t2ndHomeAddress" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="Home Address"
+                android:maxLines="1"
+                android:layout_marginTop="60dp"
+                android:singleLine="true" />
+
+            <EditText android:id="@+id/e2ndHomeAddress" android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" android:maxLines="1"
+                android:layout_marginBottom="10dp"
+                android:singleLine="true" />
+
+            <TextView android:id="@+id/tcommSpin" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="Please select the community you live in."
+                android:maxLines="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true" />
+
+            <Spinner
+                android:id="@+id/communitySpinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView android:id="@+id/formInfo3" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="Registration is almost complete!"
+                android:maxLines="1"
+                android:layout_marginTop="80dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:singleLine="true" />
+
+            <Button android:id="@+id/bRegisLast" style="?android:textAppearanceSmall"
+                android:layout_width="match_parent" android:layout_height="67dp"
+                android:layout_marginTop="30dp"
+                android:text="Next"
+                android:textStyle="bold" />
+        </LinearLayout>
+       </ScrollView>
+</LinearLayout>
