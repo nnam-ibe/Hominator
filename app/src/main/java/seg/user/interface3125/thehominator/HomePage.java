@@ -2,8 +2,10 @@ package seg.user.interface3125.thehominator;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -13,9 +15,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class HomePage extends Activity
@@ -24,6 +36,19 @@ public class HomePage extends Activity
     private String[] mNavigationDrawerItemTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+
+    RelativeLayout noiseComplaintView;
+
+    private TextView date;
+    private TextView time;
+
+    private SimpleDateFormat dateFormatter;
+    private Calendar calValidator;
+    private Calendar dateCal;
+    private Calendar timeCal;
+
+    private DatePickerDialog datePickerDialog;
+    private TimePickerDialog timePickerDialog;
 
     DBHelper db ;
 
@@ -245,6 +270,10 @@ public class HomePage extends Activity
         }
     }
 
+    private enum Item{
+        none, noise, loitering, property, other;
+    }
+
     private void toast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
@@ -288,5 +317,88 @@ public class HomePage extends Activity
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
         }
+    }
+
+    public void complaintOnClick(View view ) {
+        if( optionIsValid() && dateIsValid() &&  editTextValid()  ) {
+            toast("Your complaint has been submitted, you'll receive an email shortly.");
+            onBackPressed();
+        }
+    }
+
+    private boolean dateIsValid() {
+        calValidator = Calendar.getInstance();
+        if (dateCal.after(calValidator) ) {
+            toast("Please choose a valid date.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean editTextValid() {
+        EditText editText = (EditText) findViewById(R.id.comp_editText);
+        if ( editText.getText().toString().isEmpty() ) {
+            toast("Please enter description.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean optionIsValid() {
+        Spinner sp = (Spinner) findViewById(R.id.complaintSpinner);
+        if ( sp.getSelectedItemPosition() == 0 ) {
+            toast("Please select a complaint type");
+            return false;
+        }
+        return true;
+    }
+
+    private void setDateAndTime(){
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePickerDialog.show();
+            }
+        });
+
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timePickerDialog.show();
+            }
+        });
+
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                dateCal.set(year, monthOfYear, dayOfMonth);
+                date.setText(dateFormatter.format(dateCal.getTime()));
+            }
+        }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH) );
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis() + 1000);
+
+        timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                timeCal.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                timeCal.set(Calendar.MINUTE, minute);
+                time.setText(dateFormatter.getTimeInstance().format(timeCal.getTime()));
+            }
+        }, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), false);
+    }
+
+    public void setUpCompliant(View rootView){
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.CANADA);
+        calValidator = Calendar.getInstance();
+        dateCal=Calendar.getInstance();
+        timeCal=Calendar.getInstance();
+
+        date = (TextView) rootView.findViewById(R.id.complaint_date_set);
+        date.setText(dateFormatter.getDateInstance().format(new Date()));
+
+        time= (TextView) rootView.findViewById(R.id.complaint_time_set);
+        time.setText(dateFormatter.getTimeInstance().format(new Date()));
+
+        setDateAndTime();
     }
 }

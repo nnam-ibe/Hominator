@@ -96,5 +96,16 @@
     <string name="emergency_description">Emergency description</string>
     <string name="emergency_submit">Submit</string>
 
+    <string name="complaint_nature">Nature of Complaint?</string>
+    <string name="complaint_prompt">Select an option</string>
+    <string name="title_complaint_activity">File a Complaint</string>
+    <string-array name="complaint_array">
+        <item>-- Select an option --</item>
+        <item>Noise Complaint</item>
+        <item>Loitering</item>
+        <item>Property Standards</item>
+        <item>Other</item>
+    </string-array>
+
 
 </resources>
