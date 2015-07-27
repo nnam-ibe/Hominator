@@ -149,47 +149,6 @@ public class HomePage extends Activity
         }
     }
 
-    private void selectItem(int position) {
-        Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = new Feed_Fragment();
-                setFragment(fragment, position, Screen.feed);
-                mDrawerLayout.closeDrawer(mDrawerList);
-                break;
-            case 1:
-                fragment = new Emergency_Fragment();
-                setFragment(fragment, position, Screen.emergency);
-                mDrawerLayout.closeDrawer(mDrawerList);
-                break;
-            case 2:
-                fragment = new Complaint_Fragment();
-                setFragment(fragment, position, Screen.complaint);
-                mDrawerLayout.closeDrawer(mDrawerList);
-                break;
-            case 3:
-                fragment = new Service_Fragment();
-                setFragment(fragment, position, Screen.service);
-                mDrawerLayout.closeDrawer(mDrawerList);
-                break;
-            case 4:
-                fragment = new Bills_Fragment();
-                setFragment(fragment, position, Screen.bills);
-                mDrawerLayout.closeDrawer(mDrawerList);
-                break;
-            case 5:
-                fragment = new Settings_Fragment();
-                setFragment(fragment, position, Screen.settings);
-                mDrawerLayout.closeDrawer(mDrawerList);
-                break;
-            case 6:
-                fragment = new Logout_Fragment();
-                setFragment(fragment, position, Screen.logout);
-                mDrawerLayout.closeDrawer(mDrawerList);
-                break;
-        }
-    }
-
     public void setFragment(Fragment fragment, int position, Screen screen) {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
@@ -251,7 +210,7 @@ public class HomePage extends Activity
             return;
         }
         toast("Your emergency has been submitted. We'll send someone to you right away.");
-        getFragmentManager().popBackStack();
+        onBackPressed();
     }
 
     public enum Screen{
@@ -288,5 +247,46 @@ public class HomePage extends Activity
 
     private void toast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
+    private void selectItem(int position) {
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new Feed_Fragment();
+                setFragment(fragment, position, Screen.feed);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 1:
+                fragment = new Emergency_Fragment();
+                setFragment(fragment, position, Screen.emergency);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 2:
+                fragment = new Complaint_Fragment();
+                setFragment(fragment, position, Screen.complaint);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 3:
+                fragment = new Service_Fragment();
+                setFragment(fragment, position, Screen.service);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 4:
+                fragment = new Bills_Fragment();
+                setFragment(fragment, position, Screen.bills);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 5:
+                fragment = new Settings_Fragment();
+                setFragment(fragment, position, Screen.settings);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 6:
+                fragment = new Logout_Fragment();
+                setFragment(fragment, position, Screen.logout);
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+        }
     }
 }
