@@ -10,7 +10,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -93,14 +95,15 @@ public class HomePage extends Activity
                 mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
                 mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-                ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[6];
+                ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[7];
 
                 drawerItem[0] = new ObjectDrawerItem(R.drawable.ic_home_black_24dp, "Home");
                 drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_warning_black_24dp, "Home Emergency");
                 drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_thumb_down_black_24dp, "File A Complaint");
                 drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_build_black_24dp, "Request A Service");
                 drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_payment_black_18dp, "Bills");
-                drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_exit_to_app_black_24dp, "Logout");
+                drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_settings_black_18dp, "Settings");
+                drawerItem[6] = new ObjectDrawerItem(R.drawable.ic_exit_to_app_black_24dp, "Logout");
                 DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, drawerItem);
 
                 mDrawerList.setAdapter(adapter);
@@ -356,6 +359,10 @@ public class HomePage extends Activity
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 5:
+                Intent i = new Intent(this, SettingActivity.class);
+                startActivity(i);
+                break;
+            case 6:
                 //while (getFragmentManager())
                 getFragmentManager().popBackStack();
                 flag = false;
@@ -450,6 +457,11 @@ public class HomePage extends Activity
     }
 
     private void makeNotification( ) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean on = preferences.getBoolean("SWITCH", true);
+        if ( !on ) {
+            return;
+        }
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {

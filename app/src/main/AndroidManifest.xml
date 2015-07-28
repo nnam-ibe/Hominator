@@ -73,5 +73,7 @@
             android:name=".Parking"
             android:label="@string/title_activity_parking" >
         </activity>
+        <activity android:name=".SettingActivity"
+            android:label="@string/man_settings_string"></activity>
     </application>
 </manifest>
