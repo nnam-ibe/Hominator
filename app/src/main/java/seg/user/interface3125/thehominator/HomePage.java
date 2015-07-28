@@ -33,6 +33,13 @@ import java.util.Locale;
 public class HomePage extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, View.OnClickListener {
 
+    String username;
+    Boolean flag = false;
+
+
+    Intent oldIntent;
+    Bundle old;
+
     private String[] mNavigationDrawerItemTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -59,23 +66,39 @@ public class HomePage extends Activity
 
         db = new DBHelper(this);
 
-        mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_items_array);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        oldIntent = getIntent();
+        if(!(oldIntent == null)){
+            old = oldIntent.getExtras();
+            flag = old.getBoolean("login");
+            System.out.println("Flag: "+flag);
+            if(!flag){
+                startActivity(new Intent(this,LoginActivity.class));
+            }
+            else{
+                username = old.getString("username");
+                db.updateUserLogin(username,db,1);
 
-        ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[6];
+                mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_items_array);
+                mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+                mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-        drawerItem[0] = new ObjectDrawerItem(R.drawable.ic_home_black_24dp, "Home");
-        drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_warning_black_24dp, "Home Emergency");
-        drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_thumb_down_black_24dp, "File A Complaint");
-        drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_build_black_24dp, "Request A Service");
-        drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_payment_black_18dp, "Bills");
-        drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_exit_to_app_black_24dp, "Logout");
-        DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, drawerItem);
+                ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[6];
 
-        mDrawerList.setAdapter(adapter);
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        setFragment(new Feed_Fragment(), 0, Screen.feed);
+                drawerItem[0] = new ObjectDrawerItem(R.drawable.ic_home_black_24dp, "Home");
+                drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_warning_black_24dp, "Home Emergency");
+                drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_thumb_down_black_24dp, "File A Complaint");
+                drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_build_black_24dp, "Request A Service");
+                drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_payment_black_18dp, "Bills");
+                drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_exit_to_app_black_24dp, "Logout");
+                DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, drawerItem);
+
+                mDrawerList.setAdapter(adapter);
+                mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+                setFragment(new Feed_Fragment(), 0, Screen.feed);
+            }
+        } else{
+            startActivity(new Intent(this,LoginActivity.class));
+        }
     }
 
     @Override
@@ -195,7 +218,7 @@ public class HomePage extends Activity
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() <= 1) {
-            this.finish();
+            moveTaskToBack(true);
         } else {
             try {
                 getFragmentManager().popBackStack();
@@ -315,14 +338,12 @@ public class HomePage extends Activity
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 5:
-                fragment = new Settings_Fragment();
-                setFragment(fragment, position, Screen.settings);
-                mDrawerLayout.closeDrawer(mDrawerList);
-                break;
-            case 6:
-                fragment = new Logout_Fragment();
-                setFragment(fragment, position, Screen.logout);
-                mDrawerLayout.closeDrawer(mDrawerList);
+                //while (getFragmentManager())
+                getFragmentManager().popBackStack();
+                flag = false;
+                db.updateUserLogin(username,db,0);
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 break;
         }
     }

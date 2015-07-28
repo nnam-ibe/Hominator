@@ -40,6 +40,11 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     }
 
     @Override
+    public void onBackPressed() {
+        return;
+    }
+
+    @Override
     public void onClick(View view) {
         switch ((view.getId())){
             case R.id.bLogin:
@@ -68,7 +73,11 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                     else{Toast.makeText(getBaseContext(), "Login Failed. Username or password incorrect", Toast.LENGTH_SHORT).show();}
 
                     if(newScreen){
-                        startActivity(new Intent(this, HomePage.class));
+                        Intent myIntent = new Intent(this,HomePage.class);
+                        myIntent.putExtra("username",tempUsername);
+                        myIntent.putExtra("login", true);
+                        startActivity(myIntent);
+                        finish();
                         break;
                     }
 

@@ -26,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE1_PASSWORD = "password";
     public static final String TABLE1_EMAIL = "email";
     public static final String TABLE1_COMM = "community";
+    public static final String TABLE1_LOGGEDIN = "loggedIn";
 
     public static final String TABLE2 = "landlords";
     public static final String TABLE2_LID = "lid";
@@ -46,17 +47,19 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE4_CHEAD = "compHeading";
     public static final String TABLE4_CDESC = "compDesc";
 
-    public static final String TABLE_PARTY_ROOM = "party";
-    public static final String PARTY_DATE = "date";
-    public static final String PARTY_START_TIME = "startTime";
-    public static final String PARTY_END_TIME = "endTime";
+    public static final String TABLE5 = "party";
+    public static final String TABLE5_PID = "pid";
+    public static final String TABLE5_UID = "uid";
+    public static final String TABLE5_PARTYDATE = "date";
+    public static final String TABLE5_PARTYSTRTTIME = "startTime";
+    public static final String TABLE5_PARTYENDTIME = "endTime";
 
     // DB Create tables
     private static final String TABLE1_CREATE = "create table "
             + TABLE1 + "(" + TABLE1_UID
             + " integer primary key autoincrement unique, " + TABLE1_FNAME
             + " text not null, " + TABLE1_LNAME + " text not null, " + TABLE1_ADDRESS + " text not null, "
-            + TABLE1_EMAIL + " text not null, " + TABLE1_USERNAME + " text not null," + TABLE1_PASSWORD + " text not null," + TABLE1_COMM + " text not null);";
+            + TABLE1_EMAIL + " text not null, " + TABLE1_USERNAME + " text not null," + TABLE1_PASSWORD + " text not null," + TABLE1_COMM + " text not null, " + TABLE1_LOGGEDIN + " integer not null);";
 
     private static final String TABLE2_CREATE = "create table "
             + TABLE2 + "(" + TABLE2_LID
@@ -75,12 +78,14 @@ public class DBHelper extends SQLiteOpenHelper {
             + "FOREIGN KEY (" + TABLE4_LID + ") REFERENCES " + TABLE2 + "(" + TABLE2_LID + ") );";
 
 
-    private static final String TABLE_PARTY_ROOM_CREATE = "create table "
-            + TABLE_PARTY_ROOM + "(" + PARTY_DATE
-            + " date primary key, " + PARTY_START_TIME + " time primary key, "
-            + PARTY_END_TIME + " time not null);";
+    private static final String TABLE5_CREATE = "create table "
+            + TABLE5 + "(" + TABLE5_PID
+            + " integer primary key autoincrement unique not null, " + TABLE5_UID
+            + " integer not null, " + TABLE5_PARTYDATE
+            + " date not null, " + TABLE5_PARTYSTRTTIME + " time not null, "
+            + TABLE5_PARTYENDTIME + " time not null, " + "FOREIGN KEY (" + TABLE5_UID + ") REFERENCES " + TABLE1 + "(" + TABLE1_UID + "));";
 
-    public DBHelper(Context context){
+    public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         SQLiteDatabase db = this.getWritableDatabase();
     }
@@ -95,6 +100,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(TABLE1_PASSWORD, user.getPassword());
         values.put(TABLE1_ADDRESS, user.getAddress());
         values.put(TABLE1_COMM, user.getCommunity());
+        values.put(TABLE1_LOGGEDIN,user.getLoggedIn());
 
         db.insert(TABLE1, null, values);
     }
@@ -109,6 +115,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return query;
     }
+
+    public void updateUserLogin(String username, DBHelper helper, int val){
+
+        SQLiteDatabase db = helper.getWritableDatabase();
+        //helper.onUpgrade(db,2,3);
+        ContentValues cv = new ContentValues();
+        cv.put(this.TABLE1_LOGGEDIN, val);
+        String [] whereArgs = new String[]{username};
+
+        db.update(this.TABLE1,cv,"username = ?",whereArgs);
+
+    }
+
 
     public Cursor authenticateEmail(DBHelper helper, String email) {
 
@@ -139,7 +158,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(TABLE2_CREATE);
         sqLiteDatabase.execSQL(TABLE3_CREATE);
         sqLiteDatabase.execSQL(TABLE4_CREATE);
-        sqLiteDatabase.execSQL(TABLE_PARTY_ROOM_CREATE);
+        sqLiteDatabase.execSQL(TABLE5_CREATE);
     }
 
     @Override
@@ -148,11 +167,11 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.w(DBHelper.class.getName(),
                 "Upgrading database from version " + i + " to "
                         + i1 + ", which will destroy all old data");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE1);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE2);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE3);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE4);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_PARTY_ROOM);
+        sqLiteDatabase.execSQL("DROP TABLE " + TABLE1);
+        sqLiteDatabase.execSQL("DROP TABLE " + TABLE2);
+        sqLiteDatabase.execSQL("DROP TABLE " + TABLE3);
+        sqLiteDatabase.execSQL("DROP TABLE " + TABLE4);
+        sqLiteDatabase.execSQL("DROP TABLE " + TABLE5);
         onCreate(sqLiteDatabase);
     }
 }

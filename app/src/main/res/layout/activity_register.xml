@@ -12,37 +12,6 @@
     <LinearLayout android:id="@+id/login_form" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical"
         >
-        <TextView android:id="@+id/errorMsgusername" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:text="Please complete the following form."
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:visibility="gone"
-            android:gravity="center"
-            android:layout_marginTop="5dp"
-            />
-        <TextView android:id="@+id/errorMsgfirstName" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:text="All fields are required."
-            android:textAlignment="center"
-            android:visibility="gone"
-            android:textStyle="bold"
-            android:gravity="center"
-            />
-
-        <TextView android:id="@+id/errorMsglastName" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:text="First Name"
-            android:maxLines="1"
-            android:layout_marginTop="15dp"
-            android:visibility="gone"
-            android:singleLine="true" />
-
-        <TextView android:id="@+id/errorMsgemail" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:text="First Name"
-            android:maxLines="1"
-            android:visibility="gone"
-            android:textSize = "5pt"
-            android:layout_marginTop="15dp"
-            android:singleLine="true" />
-
         <TextView android:id="@+id/formInfo1" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="Please complete the following form."
             android:textAlignment="center"
@@ -55,7 +24,68 @@
             android:textAlignment="center"
             android:textStyle="bold"
             android:gravity="center"
+            android:layout_marginBottom="10dp"
             />
+
+        <TextView android:id="@+id/errorMsgfirstName" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="First name must begin with a Capital letter, must be atleast 1 letter and only alphabetic."
+            android:textAlignment="center"
+            android:textColor="#d61a1a"
+            android:textSize="5pt"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            />
+        <!--android:visibility="gone"!-->
+        <TextView android:id="@+id/errorMsglastName" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Last name must begin with a letter, must be alphabetic and can only contain one space, ' or - before next letter. "
+            android:textAlignment="center"
+            android:textColor="#d61a1a"
+            android:textSize="5pt"
+            android:gravity="center"
+            />
+
+        <TextView android:id="@+id/errorMsgEmail" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Email must be in the form 'localpart@domain'. An example can be 'johndoe@hotmail.com'"
+            android:textAlignment="center"
+            android:textSize="5pt"
+            android:textColor="#d61a1a"
+            android:gravity="center"
+            android:layout_marginTop="15dp"/>
+
+        <TextView android:id="@+id/errorMsgEmailUsed" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Email is used by another user. Please enter another email address."
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:textSize="5pt"
+            android:textColor="#d61a1a"
+            android:gravity="center"
+            android:layout_marginTop="15dp" />
+
+        <TextView android:id="@+id/errorMsgUsername" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Username must be alphanumeric, can contain _ and - and must be between 5-10 characters."
+            android:textAlignment="center"
+            android:textSize="5pt"
+            android:textColor="#d61a1a"
+            android:gravity="center"
+            android:layout_marginTop="15dp" />
+
+        <TextView android:id="@+id/errorMsgUsernameTaken" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Username is taken by another user. Please enter another username."
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:textColor="#d61a1a"
+            android:gravity="center"
+            android:textSize = "5pt"
+            android:layout_marginTop="15dp" />
+
+        <TextView android:id="@+id/errorMsgPassword" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Password must contain atleast one lowercase letter, upcase letter, number and special character and must be atleast 6 characters."
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="#d61a1a"
+            android:textSize = "5pt"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"/>
 
         <TextView android:id="@+id/firstname" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="First Name"

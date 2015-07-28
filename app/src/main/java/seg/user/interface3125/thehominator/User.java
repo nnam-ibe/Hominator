@@ -5,7 +5,7 @@ package seg.user.interface3125.thehominator;
  */
 public class User {
    private String firstName, lastName, address, email, username, password, community;
-    int uid;
+    int uid, loggedIn;
 
     public User(String firstname, int uid, String email, String username, String password, String lastname, String address, String community) {
         this.firstName = firstname;
@@ -18,7 +18,7 @@ public class User {
         this.community = community;
     }
 
-    public User(String firstname, String lastname, String email, String username, String password, String address, String community) {
+    public User(String firstname, String lastname, String email, String username, String password, String address, String community, int loggedIn) {
         this.firstName = firstname;
         this.email = email;
         this.lastName = lastname;
@@ -26,6 +26,8 @@ public class User {
         this.address = address;
         this.password = password;
         this.community = community;
+        this.loggedIn = loggedIn;
+
     }
 
     // Getters
@@ -54,6 +56,10 @@ public class User {
         return this.password;
     }
 
+    public int getLoggedIn(){
+        return this.loggedIn;
+    }
+
     public int getUID(){
         return this.uid;
     }
@@ -78,6 +84,10 @@ public class User {
 
     public void setEmail(String x){
         this.email = x;
+    }
+
+    public void setLoggedIn(int x){
+        this.loggedIn = x;
     }
 
     public void setPassword(String x){

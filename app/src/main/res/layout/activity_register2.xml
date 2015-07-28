@@ -29,10 +29,19 @@
                 android:gravity="center"
                 />
 
+            <TextView android:id="@+id/errorMsgAddress" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="Address must be in the form 'Street number' 'Street' 'Street suffix', 'Apt. 4'"
+                android:textAlignment="center"
+                android:textColor="#d61a1a"
+                android:textSize="5pt"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                />
+
             <TextView android:id="@+id/t2ndHomeAddress" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:text="Home Address"
                 android:maxLines="1"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:singleLine="true" />
 
             <EditText android:id="@+id/e2ndHomeAddress" android:layout_width="match_parent"
@@ -44,6 +53,7 @@
             <TextView android:id="@+id/tcommSpin" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:text="Please select the community you live in."
                 android:maxLines="1"
+                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:singleLine="true" />
@@ -56,14 +66,14 @@
             <TextView android:id="@+id/formInfo3" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:text="Registration is almost complete!"
                 android:maxLines="1"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="30dp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:singleLine="true" />
 
             <Button android:id="@+id/bRegisLast" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="67dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:text="Next"
                 android:textStyle="bold" />
         </LinearLayout>

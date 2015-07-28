@@ -66,7 +66,7 @@ public class RegisterActivity3 extends Activity implements View.OnClickListener{
     public void onClick(View view) {
         switch ((view.getId())){
             case R.id.bRegisComplete:
-                User registeredUser = new User(firstName,lastName, email, username, password, address, community);
+                User registeredUser = new User(firstName,lastName, email, username, password, address, community, 0);
                 helper.insertUser(registeredUser);
                 Toast.makeText(getBaseContext(),"Registration Complete", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, LoginActivity.class));
