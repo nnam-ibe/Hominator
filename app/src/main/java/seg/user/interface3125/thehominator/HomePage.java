@@ -5,6 +5,9 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+//import android.support.v4.app.NotificationCompat;
 
 
 public class HomePage extends Activity
@@ -57,6 +62,8 @@ public class HomePage extends Activity
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
 
+    private Feed_Fragment feed = new Feed_Fragment();
+
     DBHelper db ;
 
     @Override
@@ -69,7 +76,11 @@ public class HomePage extends Activity
         oldIntent = getIntent();
         if(!(oldIntent == null)){
             old = oldIntent.getExtras();
-            flag = old.getBoolean("login");
+            if ( old != null ) {
+                flag = old.getBoolean("login");
+            } else {
+                flag = true;
+            }
             System.out.println("Flag: "+flag);
             if(!flag){
                 startActivity(new Intent(this,LoginActivity.class));
@@ -94,7 +105,14 @@ public class HomePage extends Activity
 
                 mDrawerList.setAdapter(adapter);
                 mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-                setFragment(new Feed_Fragment(), 0, Screen.feed);
+                setFragment(feed, 0, Screen.feed);
+                new Thread()
+                {
+                    public void run()
+                    {
+                        makeNotification();
+                    }
+                }.start();
             }
         } else{
             startActivity(new Intent(this,LoginActivity.class));
@@ -429,5 +447,31 @@ public class HomePage extends Activity
         time.setText(dateFormatter.getTimeInstance().format(new Date()));
 
         setDateAndTime();
+    }
+
+    private void makeNotification( ) {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Intent intent = getIntent();
+        intent.putExtra("username", username);
+
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent,  PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification n  = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_home_black_24dp)
+                .setContentTitle(getString(R.string.feed_bbq_title))
+                .setContentText(getString(R.string.feed_bbq_desc))
+                .setContentIntent(pIntent)
+                .setAutoCancel(true).build();
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+
+        notificationManager.notify(0, n);
+        feed.addItem();
     }
 }

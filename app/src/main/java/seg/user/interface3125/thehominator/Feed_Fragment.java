@@ -17,6 +17,7 @@ import java.util.List;
 public class Feed_Fragment extends Fragment {
     private RecyclerView mRecyclerView;
     private FeedAdapter fAdapter;
+    private List list;
     public Feed_Fragment() {
     }
 
@@ -29,7 +30,8 @@ public class Feed_Fragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(llm);
 
-        fAdapter = new FeedAdapter(setUpFeed());
+        list = setUpFeed();
+        fAdapter = new FeedAdapter(list);
         mRecyclerView.setAdapter(fAdapter);
 
         return rootView;
@@ -40,11 +42,22 @@ public class Feed_Fragment extends Fragment {
         result.add( new FeedContent(getString(R.string.feed_water_title), getString(R.string.feed_water_desc)) );
         result.add( new FeedContent(getString(R.string.feed_pool_title), getString(R.string.feed_pool_desc)) );
         result.add( new FeedContent(getString(R.string.feed_fire_title), getString(R.string.feed_fire_desc)) );
-        result.add( new FeedContent(getString(R.string.feed_garage_title), getString(R.string.feed_garage_desc)) );
-        result.add( new FeedContent(getString(R.string.feed_bike_title), getString(R.string.feed_bike_desc)) );
+        result.add(new FeedContent(getString(R.string.feed_garage_title), getString(R.string.feed_garage_desc)));
+        result.add(new FeedContent(getString(R.string.feed_bike_title), getString(R.string.feed_bike_desc)));
         result.add( new FeedContent(getString(R.string.feed_bbq_title), getString(R.string.feed_bbq_desc)) );
-        result.add( new FeedContent(getString(R.string.feed_canada_title), getString(R.string.feed_canada_desc)) );
+        result.add(new FeedContent(getString(R.string.feed_canada_title), getString(R.string.feed_canada_desc)));
         return result;
+    }
+
+    public void addItem() {
+        View v = getView();
+        v.post(new Runnable() {
+            @Override
+            public void run() {
+                list.add(0, new FeedContent(getString(R.string.feed_bbq_title), getString(R.string.feed_bbq_desc)));
+                fAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
 }
