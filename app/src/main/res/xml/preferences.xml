@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Setings">
+    <PreferenceCategory android:title="Notifications settings" >
+        <SwitchPreference
+            android:key="SWITCH"
+            android:title="Push notifications" />
+    </PreferenceCategory>
+</PreferenceScreen>
