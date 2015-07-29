@@ -5,9 +5,14 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,6 +33,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+//import android.support.v4.app.NotificationCompat;
 
 
 public class HomePage extends Activity
@@ -57,6 +64,8 @@ public class HomePage extends Activity
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
 
+    private Feed_Fragment feed = new Feed_Fragment();
+
     DBHelper db ;
 
     @Override
@@ -70,7 +79,11 @@ public class HomePage extends Activity
         oldIntent = getIntent();
         if(!(oldIntent == null)){
             old = oldIntent.getExtras();
-            flag = old.getBoolean("login");
+            if ( old != null ) {
+                flag = old.getBoolean("login");
+            } else {
+                flag = true;
+            }
             System.out.println("Flag: "+flag);
             if(!flag){
                 startActivity(new Intent(this,LoginActivity.class));
@@ -83,19 +96,27 @@ public class HomePage extends Activity
                 mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
                 mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-                ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[6];
+                ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[7];
 
                 drawerItem[0] = new ObjectDrawerItem(R.drawable.ic_home_black_24dp, "Home");
                 drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_warning_black_24dp, "Home Emergency");
                 drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_thumb_down_black_24dp, "File A Complaint");
                 drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_build_black_24dp, "Request A Service");
                 drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_payment_black_18dp, "Bills");
-                drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_exit_to_app_black_24dp, "Logout");
+                drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_settings_black_18dp, "Settings");
+                drawerItem[6] = new ObjectDrawerItem(R.drawable.ic_exit_to_app_black_24dp, "Logout");
                 DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, drawerItem);
 
                 mDrawerList.setAdapter(adapter);
                 mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-                setFragment(new Feed_Fragment(), 0, Screen.feed);
+                setFragment(feed, 0, Screen.feed);
+                new Thread()
+                {
+                    public void run()
+                    {
+                        makeNotification();
+                    }
+                }.start();
             }
         } else{
             startActivity(new Intent(this,LoginActivity.class));
@@ -339,6 +360,10 @@ public class HomePage extends Activity
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 5:
+                Intent i = new Intent(this, SettingActivity.class);
+                startActivity(i);
+                break;
+            case 6:
                 //while (getFragmentManager())
                 getFragmentManager().popBackStack();
                 flag = false;
@@ -430,5 +455,36 @@ public class HomePage extends Activity
         time.setText(dateFormatter.getTimeInstance().format(new Date()));
 
         setDateAndTime();
+    }
+
+    private void makeNotification( ) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean on = preferences.getBoolean("SWITCH", true);
+        if ( !on ) {
+            return;
+        }
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Intent intent = getIntent();
+        intent.putExtra("username", username);
+
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent,  PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification n  = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_home_black_24dp)
+                .setContentTitle(getString(R.string.feed_bbq_title))
+                .setContentText(getString(R.string.feed_bbq_desc))
+                .setContentIntent(pIntent)
+                .setAutoCancel(true).build();
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+
+        notificationManager.notify(0, n);
+        feed.addItem();
     }
 }
