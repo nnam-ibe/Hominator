@@ -30,7 +30,7 @@
                 />
 
             <TextView android:id="@+id/errorMsgAddress" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:text="Address must be in the form 'Street number' 'Street' 'Street suffix', 'Apt. 4'"
+                android:layout_height="wrap_content" android:text="Address must be in the form 'Street number' 'Street' 'Street type'. Ex. 100 Apple Street"
                 android:textAlignment="center"
                 android:textColor="#d61a1a"
                 android:textSize="5pt"

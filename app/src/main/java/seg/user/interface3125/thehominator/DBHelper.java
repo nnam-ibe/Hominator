@@ -54,12 +54,18 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE5_PARTYSTRTTIME = "startTime";
     public static final String TABLE5_PARTYENDTIME = "endTime";
 
+    User user1 = new User("John","Obi Mikel","johnobimikel@gmail.com","JohnJimmyObi","johnObi23","23 Stamford Bridge","Bayshore",0);
+    User user2 = new User("Itachi","Uchiha","sharingan1@gmail.com","AkatsukisBest","Itachi123","123 Konoha Way","Downtown",0);
+    User user3 = new User("Barack","Obama","whitehousepimpin@gmail.com","DaBoss1","Obama23!","1 White House","Kanata",0);
+
+
     // DB Create tables
     private static final String TABLE1_CREATE = "create table "
             + TABLE1 + "(" + TABLE1_UID
             + " integer primary key autoincrement unique, " + TABLE1_FNAME
             + " text not null, " + TABLE1_LNAME + " text not null, " + TABLE1_ADDRESS + " text not null, "
             + TABLE1_EMAIL + " text not null, " + TABLE1_USERNAME + " text not null," + TABLE1_PASSWORD + " text not null," + TABLE1_COMM + " text not null, " + TABLE1_LOGGEDIN + " integer not null);";
+
 
     private static final String TABLE2_CREATE = "create table "
             + TABLE2 + "(" + TABLE2_LID
@@ -155,6 +161,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Create tables
         sqLiteDatabase.execSQL(TABLE1_CREATE);
+        this.insertUser(user1);
+        this.insertUser(user2);
+        this.insertUser(user3);
         sqLiteDatabase.execSQL(TABLE2_CREATE);
         sqLiteDatabase.execSQL(TABLE3_CREATE);
         sqLiteDatabase.execSQL(TABLE4_CREATE);

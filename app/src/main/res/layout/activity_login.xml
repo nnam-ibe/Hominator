@@ -5,13 +5,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:theme="@style/AppTheme"
     tools:context="seg.user.interface3125.thehominator.LoginActivity"
     android:id="@+id/loginActivity">
 
-    <!-- Login progress -->
-    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" android:visibility="gone" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -47,9 +44,13 @@
                     android:maxLines="1" android:singleLine="true" />
 
                 <Button android:id="@+id/bLogin" style="?android:textAppearanceSmall"
-                    android:layout_width="match_parent" android:layout_height="95dp"
+                    android:layout_width="250dp" android:layout_height="70dp"
                     android:layout_marginTop="40dp" android:text="Log in"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textSize="9pt"
+                    android:background="#66BB6A"
+                    android:textColor="#FFFFFF"/>
 
                 <TextView android:id="@+id/lRegister" style="?android:textAppearanceSmall"
                     android:layout_width="match_parent" android:layout_height="wrap_content"

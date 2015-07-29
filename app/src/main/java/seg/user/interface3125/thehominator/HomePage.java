@@ -64,6 +64,7 @@ public class HomePage extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+
         db = new DBHelper(this);
 
         oldIntent = getIntent();
@@ -218,7 +219,7 @@ public class HomePage extends Activity
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() <= 1) {
-            moveTaskToBack(true);
+            this.finish();
         } else {
             try {
                 getFragmentManager().popBackStack();

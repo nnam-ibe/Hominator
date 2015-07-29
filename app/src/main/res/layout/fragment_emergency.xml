@@ -4,32 +4,92 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/emer_subjectTextView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="If anyone is in danger at any time or their safety is in jeopardy, please contact 911 immediately."
+        android:textSize="7pt"
+        android:textColor="#d61a1a"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="4dp"
+        android:padding="15dp"
+        android:layout_marginBottom="-40dp"
+        />
+
+    <TextView
+        android:id="@+id/emer_subjectTextView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="This page provides users the ability to place emergency requests to landlords regarding their home, such as damaged flooring or damaged pipes that are hazardous and need to be handled urgently "
+        android:textSize="7pt"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="15dp"
+        />
+
+    <TextView
+        android:id="@+id/emer_subjectTextView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="Emergency subject"
+        android:maxLines="1"
+        android:textSize="8pt"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="-40dp"
+        android:singleLine="true"
+        />
+
     <EditText
         android:id="@+id/emer_subjectTextView"
         android:layout_width="match_parent"
         android:inputType="text"
         android:layout_height="70dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
+        android:layout_margin="20dp"
         android:imeOptions="actionNext"
-        android:hint="@string/emergency_subject"
+        />
+    <TextView
+        android:id="@+id/emer_descTextView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="Emergency description"
+        android:maxLines="1"
+        android:textSize="8pt"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="-40dp"
+        android:singleLine="true"
         />
 
     <EditText
         android:id="@+id/emer_descTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:lines="8"
-        android:gravity="top|left"
-        android:padding="20dp"
-        android:hint="@string/emergency_description"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:imeOptions="actionNext"
         android:inputType="textMultiLine" />
 
     <Button
         android:layout_gravity="center_horizontal"
         android:text="@string/emergency_submit"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="emergencySubmit" />
-
+        android:onClick="emergencySubmit"
+        android:layout_width="295dp"
+        android:textSize="10pt"
+        android:background="#66BB6A"
+        android:textColor="#FFFFFF"
+        />
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

@@ -5,15 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="16dp">
+ <ScrollView
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+     <LinearLayout
+         android:orientation="vertical"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
     <TextView
         android:id="@+id/nature1"
-        android:text="@string/complaint_nature"
-        android:paddingLeft="14dp"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:textSize="20sp"
-        android:textColor="#000000" />
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="Nature of the complaint"
+        android:maxLines="1"
+        android:textSize="8pt"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="10dp"
+        android:singleLine="true"
+        />
     <Spinner
 
         android:id="@+id/complaintSpinner"
@@ -23,110 +33,106 @@
         android:entries="@array/complaint_array"
         android:prompt="@string/complaint_prompt"
         android:paddingStart="10dp"
-        android:paddingBottom="10dp"
         />
 
     <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        card_view:cardBackgroundColor="@color/colorCards"
-        android:layout_below="@+id/complaintSpinner"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/complaint_content"
+    android:layout_width="match_parent"
+    card_view:cardBackgroundColor="@color/colorPrimary"
+    android:layout_height="300dp"
+    card_view:cardCornerRadius="1dp"
+    card_view:cardElevation= "5dp"
+    android:layout_margin="5dp"
         card_view:cardPreventCornerOverlap="false"
-        card_view:cardUseCompatPadding="true"
-        android:id="@+id/complaint_content"
+        card_view:cardUseCompatPadding="true">
+    <RelativeLayout
+        android:id="@+id/feedHeader2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="visible"
+        android:background="#FFFFFF"
         >
+        <TextView
+            android:id="@+id/noiseDate"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:padding="8dp"
+            android:text="Infraction time and date"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:textSize="9pt"
+            android:visibility="visible" />
 
-        <RelativeLayout
+        <TextView
+            android:paddingTop="20dp"
+            android:id="@+id/complaint_date_main"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:text="Date: "
+            android:layout_below="@+id/noiseDate"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:paddingTop="20dp"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/complaint_date_set"
+            android:textSize="8pt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/complaint_time_main"
+            android:layout_alignEnd="@+id/complaint_time_set"
+            android:layout_alignStart="@+id/complaint_time_set" />
+
+        <TextView
+            android:paddingTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/complaint_time_main"
+            android:textSize="8pt"
+            android:textColor="#000000"
+            android:text="Time: "
+            android:layout_below="@+id/complaint_date_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:paddingTop="30dp"
+            android:paddingLeft="20dp"
+            android:id="@+id/complaint_time_set"
+            android:textSize="8pt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="14dp"
-            android:id="@+id/noiseInfo"
-
-            >
-
-            <TextView android:text="Infraction Date and Time"
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:id="@+id/noiseDate"
-                />
-            <View
-                android:id="@+id/Date_line"
-                android:layout_width="match_parent"
-                android:layout_height="2dip"
-                android:background="#000000"
-                android:layout_below="@+id/noiseDate"
-                android:layout_alignEnd="@+id/noiseDate" />
-            <TextView
-                android:paddingTop="20dp"
-                android:id="@+id/complaint_date_main"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:text="Date: "
-                android:layout_below="@+id/Date_line"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:paddingTop="20dp"
-                android:paddingLeft="20dp"
-                android:id="@+id/complaint_date_set"
-                android:textSize="20sp"
-                android:layout_below="@+id/Date_line"
-                android:layout_toRightOf="@+id/complaint_date_main"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:paddingTop="30dp"
-                android:id="@+id/complaint_time_main"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:text="Time: "
-                android:layout_below="@+id/complaint_date_main"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:paddingTop="30dp"
-                android:paddingLeft="20dp"
-                android:id="@+id/complaint_time_set"
-                android:textSize="20sp"
-                android:layout_below="@+id/complaint_date_main"
-                android:layout_toRightOf="@id/complaint_time_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            android:layout_above="@+id/complaintInfo"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/complaint_date_main" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Please provide further information in the field below"
-                android:id="@+id/complaintInfo"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:layout_below="@+id/complaint_time_main"
-                />
-            <EditText
-                android:layout_width="match_parent"
-
-                android:layout_height="60dp"
-                android:id="@+id/comp_editText"
-                android:inputType="textMultiLine"
-                android:layout_below="@+id/complaintInfo"/>
-
-
-
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please provide further information in the field below"
+            android:id="@+id/complaintInfo"
+            android:textSize="8pt"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:padding="20dp"
+            android:layout_below="@+id/complaint_time_main"
+            />
+        <EditText
+            android:layout_width="310dp"
+            android:layout_height="60dp"
+            android:id="@+id/comp_editText"
+            android:layout_marginLeft="22dp"
+            android:inputType="textMultiLine"
+            android:layout_below="@+id/complaintInfo"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
     <LinearLayout
         android:layout_width="match_parent"
         android:paddingTop="20dp"
@@ -135,9 +141,16 @@
         android:layout_below="@id/complaint_content"
         android:orientation="vertical">
         <Button
-            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Submit"
             android:layout_height="wrap_content"
-            android:text="Submit Request"
+            android:layout_width="295dp"
+            android:textSize="10pt"
+            android:layout_marginTop="-5dp"
+            android:background="#66BB6A"
+            android:textColor="#FFFFFF"
             android:onClick="complaintOnClick" />
     </LinearLayout>
+    </LinearLayout>
+ </ScrollView>
 </LinearLayout>
