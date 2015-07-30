@@ -1,16 +1,18 @@
 package seg.user.interface3125.thehominator;
 
 
-import android.app.Activity;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -79,6 +81,24 @@ public class NavigationDrawerFragment extends Fragment {
         selectItem(mCurrentSelectedPosition);
     }
 
+
+    public void onDrawerClosed(View drawerView) {
+        mDrawerToggle.onDrawerClosed(drawerView);
+        if (!isAdded()) {
+            return;
+        }
+
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+
+        Resources resources = getResources();
+        float width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 240, resources.getDisplayMetrics());
+        DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mDrawerListView.getLayoutParams();
+        params.width = (int) (width);
+        mDrawerListView.setLayoutParams(params);
+
+        getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -102,6 +122,17 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 getResources().getStringArray(R.array.navigation_drawer_items_array)));
+
+        mDrawerListView.post(new Runnable() {
+            @Override
+            public void run() {
+                Resources resources = getResources();
+                float width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, resources.getDisplayMetrics());
+                DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mDrawerListView.getLayoutParams();
+                params.width = (int) (width);
+                mDrawerListView.setLayoutParams(params);
+            }
+        });
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -275,4 +306,5 @@ public class NavigationDrawerFragment extends Fragment {
          */
         void onNavigationDrawerItemSelected(int position);
     }
+
 }

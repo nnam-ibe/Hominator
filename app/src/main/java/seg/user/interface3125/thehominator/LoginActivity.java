@@ -23,6 +23,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        
 
         helper = new DBHelper(this);
 
@@ -55,12 +56,13 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                     query.moveToFirst();
 
                     System.out.println(" Query count: " + query.getCount());
+                    //System.out.println("DB Username: "+query.getString(0)+" , DB Pass: "+query.getString(1));
 
                     boolean loginFlag = false;
                     boolean newScreen = false;
 
                        do{
-                        if(/*tempUsername.equals(query.getString(0)) && tempPassword.equals(query.getString(1))*/ query.getCount() == 1){
+                        if(query.getCount() == 1){
                             loginFlag = true;
                         }
                     }while(query.moveToNext());
@@ -77,7 +79,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                         myIntent.putExtra("username",tempUsername);
                         myIntent.putExtra("login", true);
                         startActivity(myIntent);
-                        finish();
+                        this.finish();
                         break;
                     }
 

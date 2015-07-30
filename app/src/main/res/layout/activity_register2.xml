@@ -72,10 +72,13 @@
                 android:singleLine="true" />
 
             <Button android:id="@+id/bRegisLast" style="?android:textAppearanceSmall"
-                android:layout_width="match_parent" android:layout_height="67dp"
-                android:layout_marginTop="20dp"
-                android:text="Next"
-                android:textStyle="bold" />
+                android:layout_width="215dp" android:layout_height="55dp"
+                android:layout_marginTop="15dp" android:text="Next"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textSize="9pt"
+                android:background="#4E7AC7"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
        </ScrollView>
 </LinearLayout>
