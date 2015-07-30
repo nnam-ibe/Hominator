@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,14 +51,17 @@ public class Feed_Fragment extends Fragment {
     }
 
     public void addItem() {
-        View v = getView();
-        v.post(new Runnable() {
-            @Override
-            public void run() {
-                list.add(0, new FeedContent(getString(R.string.feed_bbq_title), getString(R.string.feed_bbq_desc)));
-                fAdapter.notifyDataSetChanged();
-            }
-        });
+        try {
+            View v = getView();
+            v.post(new Runnable() {
+                @Override
+                public void run() {
+                    list.add(0, new FeedContent(getString(R.string.feed_bbq_title), getString(R.string.feed_bbq_desc)));
+                    fAdapter.notifyDataSetChanged();
+                }
+            });
+        } catch (Exception e) {
+        }
     }
 
 }

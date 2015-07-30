@@ -88,7 +88,7 @@
         android:textSize="9pt"
         android:background="#4E7AC7"
         android:textColor="#FFFFFF"
-        />
+        android:onClick="emergencySubmit" />
     </LinearLayout>
 </ScrollView>
 </LinearLayout>
