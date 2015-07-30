@@ -360,7 +360,13 @@ public class HomePage extends Activity
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 5:
+                String extras[] = setUpSettingExtras();
                 Intent i = new Intent(this, SettingActivity.class);
+                i.putExtra("username",extras[0]);
+                i.putExtra("firstname",extras[1]);
+                i.putExtra("lastname",extras[2]);
+                i.putExtra("address",extras[3]);
+                i.putExtra("email",extras[4]);
                 startActivity(i);
                 break;
             case 6:
@@ -486,5 +492,16 @@ public class HomePage extends Activity
 
         notificationManager.notify(0, n);
         feed.addItem();
+    }
+
+    private String[] setUpSettingExtras(){
+        UserInformation ui = db.getInfo(username);
+        String extras[] = new String[5];
+        extras[0] = ui.getUsername();
+        extras[1] = ui.getFirstname();
+        extras[2] = ui.getLastname();
+        extras[3] = ui.getAddress();
+        extras[4] = ui.getEmail();
+        return  extras;
     }
 }

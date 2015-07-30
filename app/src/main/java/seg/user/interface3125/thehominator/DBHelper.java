@@ -97,7 +97,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void insertUser(User user) {
-        db = this.getWritableDatabase();
+//        db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(TABLE1_FNAME, user.getFirstName());
         values.put(TABLE1_LNAME, user.getLastName());
@@ -160,6 +160,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Create tables
+        db = sqLiteDatabase;
         sqLiteDatabase.execSQL(TABLE1_CREATE);
         this.insertUser(user1);
         this.insertUser(user2);
@@ -182,5 +183,18 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE4);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE5);
         onCreate(sqLiteDatabase);
+    }
+
+    public UserInformation getInfo( String username ) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE1, new String[] {TABLE1_USERNAME, TABLE1_FNAME,TABLE1_LNAME,TABLE1_EMAIL,TABLE1_ADDRESS },
+                TABLE1_USERNAME + "=?", new String[]{username}, null, null, null, null );
+        if (cursor != null){
+            cursor.moveToFirst();
+            UserInformation userInformation = new UserInformation(cursor.getString(0), cursor.getString(1),cursor.getString(2),
+                    cursor.getString(3),cursor.getString(4));
+            return userInformation;
+        }
+        return null;
     }
 }

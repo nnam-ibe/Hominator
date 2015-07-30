@@ -119,6 +119,7 @@
     <string name="amount">1000</string>
     <string name="cancel" />
     <string name="man_settings_string">Settings</string>
+    <string name="pref_fname">firstname</string>
 
 
 </resources>

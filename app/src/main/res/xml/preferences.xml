@@ -6,4 +6,30 @@
             android:key="SWITCH"
             android:title="Push notifications" />
     </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Account Settings">
+        <Preference
+            android:key="username"
+            android:title="Username"
+            android:selectable="false"
+            android:summary=""/>
+        <EditTextPreference
+            android:key="@string/pref_fname"
+            android:title="First Name"
+            android:summary=""/>
+        <EditTextPreference
+            android:key="lastname"
+            android:title="Last Name"
+            android:summary=""/>
+        <EditTextPreference
+            android:key="email"
+            android:title="Email"
+            android:summary=""
+            />
+        <EditTextPreference
+            android:key="address"
+            android:title="Address"
+            android:summary=""
+            />
+    </PreferenceCategory>
 </PreferenceScreen>
