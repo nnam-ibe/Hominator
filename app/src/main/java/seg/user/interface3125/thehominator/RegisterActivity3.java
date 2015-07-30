@@ -70,6 +70,7 @@ public class RegisterActivity3 extends Activity implements View.OnClickListener{
                 helper.insertUser(registeredUser);
                 Toast.makeText(getBaseContext(),"Registration Complete", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, LoginActivity.class));
+                this.finish();
                 break;
 
         }

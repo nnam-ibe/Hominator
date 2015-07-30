@@ -54,8 +54,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE5_PARTYSTRTTIME = "startTime";
     public static final String TABLE5_PARTYENDTIME = "endTime";
 
-    User user1 = new User("John","Obi Mikel","johnobimikel@gmail.com","JohnJimmyObi","johnObi23","23 Stamford Bridge","Bayshore",0);
-    User user2 = new User("Itachi","Uchiha","sharingan1@gmail.com","AkatsukisBest","Itachi123","123 Konoha Way","Downtown",0);
+    User user1 = new User("John","Obi Mikel","johnobimikel@gmail.com","JohnJimmyObi","johnObi23!","23 Stamford Bridge","Bayshore",0);
+    User user2 = new User("Itachi","Uchiha","sharingan1@gmail.com","AkatsukisBest","Itachi123!","123 Konoha Way","Downtown",0);
     User user3 = new User("Barack","Obama","whitehousepimpin@gmail.com","DaBoss1","Obama23!","1 White House","Kanata",0);
 
 
